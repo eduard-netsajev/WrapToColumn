@@ -1,7 +1,7 @@
 <idea-plugin>
   <id>com.andrewbrookins.wrap_to_column</id>
   <name>Wrap to Column</name>
-  <version>1.8.0</version>
+  <version>1.9.0</version>
   <vendor email="a@andrewbrookins.com" url="http://andrewbrookins.com">Andrew Brookins</vendor>
 
   <description><![CDATA[
@@ -35,6 +35,11 @@
       ]]></description>
 
   <change-notes><![CDATA[
+    <b>1.9.0</b>
+    <ul>
+    <li>Add actions which use the current caret position as the wrap width parameter</li>
+    </ul>
+
     <b>1.8.0</b>
     <ul>
     <li>Fix plugin to support new Intellij versions</li>
@@ -173,5 +178,21 @@
       <keyboard-shortcut keymap="$default" first-keystroke="shift ctrl meta P"/>
       <keyboard-shortcut keymap="$default" first-keystroke="shift ctrl alt P"/>
     </action>
+
+    <action id="com.andrewbrookins.idea.wrap.WrapAtCaretAction" class="com.andrewbrookins.idea.wrap.WrapAtCaretAction"
+            text="Wrap Line to Column At Caret"
+            description="Wrap selected text or current line to the current caret's position.">
+      <add-to-group group-id="EditMenu" anchor="last"/>
+      <keyboard-shortcut keymap="$default" first-keystroke="ctrl BACK_SLASH"/>
+    </action>
+
+    <action id="com.andrewbrookins.idea.wrap.WrapParagraphAtCaretAction" class="com.andrewbrookins.idea.wrap.WrapParagraphAtCaretAction"
+            text="Wrap Paragraph to Column At Caret"
+            description="Wrap paragraph to the current caret's position.">
+      <add-to-group group-id="EditMenu" anchor="last"/>
+      <keyboard-shortcut keymap="$default" first-keystroke="shift ctrl BACK_SLASH"/>
+      <keyboard-shortcut keymap="$default" first-keystroke="shift ctrl BACK_SLASH"/>
+    </action>
+
   </actions>
 </idea-plugin>

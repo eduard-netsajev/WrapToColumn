@@ -19,10 +19,11 @@ fun isPlaintext(dataContext: DataContext?): Boolean {
 }
 
 
-fun getWrapper(project: Project?, editor: Editor, fileIsPlaintext: Boolean): CodeWrapper {
+fun getWrapper(project: Project?, editor: Editor, fileIsPlaintext: Boolean, useCaretColumn: Boolean): CodeWrapper {
     val columnWidthOverride = WrapSettingsProvider.getInstance().state?.columnWidthOverride
     val useMinimumRaggednessAlgorithm = WrapSettingsProvider.getInstance().state?.useMinimumRaggednessAlgorithm ?: false
-    val columnWidth = columnWidthOverride ?: editor.settings.getRightMargin(project)
+    val caretColumn = if (useCaretColumn) editor.caretModel.logicalPosition.column else null
+    val columnWidth = caretColumn ?: columnWidthOverride ?: editor.settings.getRightMargin(project)
     val tabWidth = editor.settings.getTabSize(project)
     val wrapper: CodeWrapper
 
